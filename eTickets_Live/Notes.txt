@@ -1,1 +1,11 @@
-﻿
+﻿Info:
+
+Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme işlemlerini içerek.
+
+
+1. Modellerin hazırlanması
+	Actor
+	Producer
+	Cinema
+	Movie bilgilerini basit olarak tutacak şekilde.
+
