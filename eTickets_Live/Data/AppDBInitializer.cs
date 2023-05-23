@@ -186,7 +186,7 @@ namespace eTickets_Live.Data
                             EndDate = DateTime.Now.AddDays(-5),
                             CinemaId = 1,
                             ProducerId = 2,
-                            MovieCategory = MovieCategory.Belgesel
+                            MovieCategory = MovieCategory.Belgesel 
                         },
                         new Movie()
                         {
