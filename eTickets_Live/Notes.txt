@@ -27,6 +27,18 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 
 5. Yapıyı Db tarafına göndermeden önce benim class yapılarını AppDbContext sınıfına öğretmem lazım.
 
+6. appsettings.json dosyasına VT ye bağlanabilmesi için gerekli "ConnectionStrings" tanımlarının yapılması.
+
+7. Program.cs dosyasına/classına DB tanımlamalarını yapmış olduğumuz AppDbContext düzenlemelerinin yapılması(ki connection str öğrencem vb.)
+
+8. migration - update database
+
+9. Bu VT içine test verisi yerleştirebilmek için örnek data oluşturacak bir sınıf tanımlanması yapılır.(AppDbInitializer)
+
+
+
+
+
 
 
 
