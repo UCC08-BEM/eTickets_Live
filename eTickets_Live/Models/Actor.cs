@@ -12,5 +12,9 @@
 
         public string Bio { get; set; } // Biyografisi
 
+        // Yapılmış olan ara table(Actor_Movie) yapısının bağlanması.
+
+        public List<Actor_Movie> Actor_Movies { get; set; }
+
     }
 }
