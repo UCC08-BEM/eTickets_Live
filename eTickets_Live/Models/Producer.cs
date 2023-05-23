@@ -12,5 +12,8 @@
 
         public string Bio { get; set; } // Biyografisi
 
+        // Relation tanımlaması
+        public List<Movie> Movies { get; set; } // Movie classından bir liste değeri Id (Movie) bilgisinin geleceği kısım. Bir producer birden fazla filmi yapmış olabilir. 
+
     }
 }

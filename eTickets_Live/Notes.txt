@@ -17,5 +17,15 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 
 3. Uygulama içine VT na bağlantı yapacak olan AppDbContext sınıfı ekleniyor (Bu sınıfın uygulama <-> VT arasında bir tercümanlık görevi olacaktır.)
 
+4. Yapılmış olan modellerimizin Migration ile VT tarafına gönderilmesi öncesi ilişkisellik tanımlarının yapılması
+	
+	Cinema - Movie  (Cinema classı ile Movie classının  ilşkilendirilmesi)
+	
+	Producer - Movie (Produces classı ile Movie classının ilişkilendirilmesi)
+	
+	Movie - Actor Movie - Actor --> Actor ve Movie modellerinde çok'a çok bir ilişki durumu olduğundan dolayı "ActorMovie" olarak bu ilişki seviyesini bire çok seviyesine düşürebiliriz. İşlerimiz daha kolaylaşır dolayısıyla.
+
+
+
 
 
