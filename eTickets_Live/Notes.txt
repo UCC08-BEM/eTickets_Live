@@ -8,4 +8,10 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 	Producer
 	Cinema
 	Movie bilgilerini basit olarak tutacak şekilde.
+	MovieCategory enum bloğu 
+
+2. Proje içinde DB olayı olduğundan gerekli nuget paketlerinin projeye dahil edilmesi
+	EF Core
+	EF Core Tools --> Nuget Package Manager kısmında Entity Framework komutlarının kullanılabilmesi.
+	EF Core SqlServer 
 
