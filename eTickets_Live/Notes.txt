@@ -25,6 +25,10 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 	
 	Movie - Actor Movie - Actor --> Actor ve Movie modellerinde çok'a çok bir ilişki durumu olduğundan dolayı "ActorMovie" olarak bu ilişki seviyesini bire çok seviyesine düşürebiliriz. İşlerimiz daha kolaylaşır dolayısıyla.
 
+5. Yapıyı Db tarafına göndermeden önce benim class yapılarını AppDbContext sınıfına öğretmem lazım.
+
+
+
 
 
 
