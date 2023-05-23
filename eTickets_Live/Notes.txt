@@ -15,3 +15,7 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 	EF Core Tools --> Nuget Package Manager kısmında Entity Framework komutlarının kullanılabilmesi.
 	EF Core SqlServer 
 
+3. Uygulama içine VT na bağlantı yapacak olan AppDbContext sınıfı ekleniyor (Bu sınıfın uygulama <-> VT arasında bir tercümanlık görevi olacaktır.)
+
+
+
