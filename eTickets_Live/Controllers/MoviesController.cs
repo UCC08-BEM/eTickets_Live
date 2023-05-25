@@ -20,7 +20,7 @@ namespace eTickets_Live.Controllers
         {
             var moviesdata = _context.Movies.ToList();
 
-            return View();
+            return View(moviesdata);
         }
     }
 }
