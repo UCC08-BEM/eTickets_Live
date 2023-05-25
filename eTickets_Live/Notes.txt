@@ -38,6 +38,12 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 10. Program.cs içine AppDbInitializer kısmının eklenmesi ve sample dataların oluşturulması
 
 =========================
+Controller ların oluşturulması
+
+- ActorsController
+
+
+
 
 
 
