@@ -35,6 +35,11 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 
 9. Bu VT içine test verisi yerleştirebilmek için örnek data oluşturacak bir sınıf tanımlanması yapılır.(AppDbInitializer)
 
+10. Program.cs içine AppDbInitializer kısmının eklenmesi ve sample dataların oluşturulması
+
+=========================
+
+
 
 
 
