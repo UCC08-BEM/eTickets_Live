@@ -1,5 +1,6 @@
 ﻿using eTickets_Live.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets_Live.Controllers
 {
@@ -18,7 +19,8 @@ namespace eTickets_Live.Controllers
 
         public IActionResult Index()
         {
-            var moviesdata = _context.Movies.ToList();
+            // Movie tablosu Cinema tablosu ile ilişkili olduğundan dolayı Include direktifi ile ilişkili olduğu tablodan gerekli alanı alabiliyoruz.(Burad Cinema adı gibi)
+            var moviesdata = _context.Movies.Include(c => c.Cinema).OrderBy(c=> c.Name).ToList();
 
             return View(moviesdata);
         }
