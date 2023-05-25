@@ -42,6 +42,14 @@ Controller ların oluşturulması
 
 - ActorsController
 
+- ProducersController
+
+- CinemasController
+
+- MoviesController
+
+
+
 
 
 
