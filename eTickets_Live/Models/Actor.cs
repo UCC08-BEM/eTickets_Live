@@ -1,8 +1,12 @@
-﻿namespace eTickets_Live.Models
+﻿using eTickets_Live.Data.Base;
+
+namespace eTickets_Live.Models
 {
     // Aktör bilgilerini tutacak olan class
+
+    // IEntityBase interfacini kullanarak..yani bu sınıf içindeki propertyleri(gerekenleri) interface tarafından alabiliriz.
     
-    public class Actor
+    public class Actor : IEntityBase
     {
         public int Id { get; set; }
 

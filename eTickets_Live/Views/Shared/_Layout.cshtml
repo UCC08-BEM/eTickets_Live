@@ -39,12 +39,14 @@
                                 <a class="dropdown-item" asp-controller="Producers" asp-action="Index"><i class="bi bi-headset"></i> Yapımcılar</a>
                                 <a class="dropdown-item" asp-controller="Actors" asp-action="Index"><i class="bi bi-person-square"></i> Aktörler</a>
                             </div>
-
                         </li>
-
-
-
                     </ul>
+                    <form class="d-flex" asp-controller="Movies" asp-action="Filter">
+                        <input name="searchString" type="text" class="form-control" placeholder="Arama kelimesi giriniz..." aria-label="Recipient's name" aria-describedby="button-addon2" />
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+
+
                 </div>
             </div>
         </nav>

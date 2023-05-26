@@ -14,9 +14,6 @@ internal class Program
 
         builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
 
-
-
-
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -36,7 +33,7 @@ internal class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=Movies}/{action=Index}/{id?}");
 
         // Program çalýþmadan önce hazýrlanmýþ olan test datasýnýn VT ye gönderilmesi
         AppDBInitializer.Seed(app);

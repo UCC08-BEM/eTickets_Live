@@ -38,7 +38,7 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 10. Program.cs içine AppDbInitializer kısmının eklenmesi ve sample dataların oluşturulması
 
 =========================
-Controller ların oluşturulması
+11. Controller ların oluşturulması
 
 - ActorsController
 
@@ -47,6 +47,21 @@ Controller ların oluşturulması
 - CinemasController
 
 - MoviesController
+
+12. Viewların oluşturulması
+	Actors,Produces,Cinemas,Movies
+
+
+13. Layout sayfasına menü seçenekleri ve search eklendi.
+
+14. Veriler ile çalışma
+	Varolan tablolara CRUD işlemleri gerçekleştirme.
+
+	14.1 Actors
+
+
+
+
 
 
 

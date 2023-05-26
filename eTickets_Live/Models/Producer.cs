@@ -1,8 +1,10 @@
-﻿namespace eTickets_Live.Models
+﻿using eTickets_Live.Data.Base;
+
+namespace eTickets_Live.Models
 {
     // Aktör bilgilerini tutacak olan class
     
-    public class Producer
+    public class Producer : IEntityBase
     {
         public int Id { get; set; }
 
