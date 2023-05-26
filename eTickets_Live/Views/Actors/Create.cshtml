@@ -6,7 +6,7 @@
 
 <div class="row text">
     <div class="col-md-8 offset-2">
-        <form asp-action="Create">
+        <form asp-controller="Actors" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group text-center">
@@ -41,13 +41,13 @@
 @section Scripts {
     <script>
         $(document).ready(function (){
-            var output = document.getElementById('ProfilePictureURLPreview');
+            var output = document.getElementById('ProfilePicturePreview');
 
             output.src = $("#ProfilePictureURL").val();
         })
 
         $("ProfilePictureURL").on("change",function () {
-            var output = document.getElementById('ProfilePictureURLPreview');
+            var output = document.getElementById('ProfilePicturePreview');
 
             output.src = $(this).val();
         })

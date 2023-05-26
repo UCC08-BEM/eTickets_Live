@@ -18,7 +18,7 @@ namespace eTickets_Live.Models
 
         // Yapılmış olan ara table(Actor_Movie) yapısının bağlanması.
 
-        public List<Actor_Movie> Actor_Movies { get; set; }
+        public List<Actor_Movie>? Actor_Movies { get; set; }
 
     }
 }

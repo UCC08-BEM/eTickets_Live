@@ -1,5 +1,6 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets_Live.Controllers
@@ -34,7 +35,33 @@ namespace eTickets_Live.Controllers
         {
             return View();
         }
+        
+        [HttpPost]
+        public IActionResult Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            _service.Add(actor);
 
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Get: Actors/Details/1
+        public IActionResult Details(int id)
+        {
+
+            var actorDetails = _service.GetById(id);
+
+            if (actorDetails == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(actorDetails);
+        }
     }
 }
