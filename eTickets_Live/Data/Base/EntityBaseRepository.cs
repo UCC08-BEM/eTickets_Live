@@ -1,33 +1,53 @@
-﻿namespace eTickets_Live.Data.Base
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace eTickets_Live.Data.Base
 {
-    // Tüm işlemleri yapacak bölümleri içeren kısım
+    // Tüm işlemleri yapacak bölümleri içeren kısım. Tüm modellere hizmet edeceği için Generic(T) tipinde tanımlanmıştır ve IEntityBaseRepository interfaceinden implement edilmiştir.
 
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
 
     {
+        // İlk olarak yapılması gereken AppDbContext ayarlamalarını buraya yapmam gerekiyor
+
+        private readonly AppDbContext _context;
+
+        public EntityBaseRepository(AppDbContext context)
+        {
+            _context = context; 
+        }
+
+
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            // T olarak tüm model yapıları parametre olarak gelecek. Dolayısıyla hangi modelden geldiğimi metot çalışma öncesi Set etmem gerekiyor.
+            _context.Set<T>().Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            // delete işlemi için id parametresinin hangi modelden geldiğini öğrenmem gerekiyor.
+            // 
+            var entity=_context.Set<T>().FirstOrDefault(x => x.Id == id); // nereden geldiği öğreniyorum ve silinecek kayıdı da öğrenmiş oluyorum.
+
+            EntityEntry entityEntry = _context.Entry<T>(entity);
+            entityEntry.State=EntityState.Deleted; // Silinecek olarak işaretledi.
+            _context.SaveChanges(); // sildi.
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<T> GetAll() => _context.Set<T>().ToList(); // ilgili modelin Tüm kayıtları getirir.
+        
 
-        public T GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public T GetById(int id) => _context.Set<T>().FirstOrDefault(x => x.Id == id); // İlgili seçilen kayıdı getirir.
 
-        public void Update(int id, T entity)
+        public void Update(int id, T entity) // ilgili modeldeki ilgili kayıdı günceller
         {
-            throw new NotImplementedException();
+            EntityEntry entityEntry = _context.Entry<T>(entity);
+
+            entityEntry.State = EntityState.Modified; // Güncellendi olarak işaretledi.
+            
+            _context.SaveChanges(); // güncelledi.
         }
     }
 }
