@@ -1,5 +1,7 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Models;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets_Live.Controllers
@@ -31,5 +33,26 @@ namespace eTickets_Live.Controllers
             return View();
 
         }
+        [HttpPost]
+
+        public IActionResult Create([Bind("FullName,ProfilePictureURL,Bio")] Producer producer)
+        { 
+            if (!ModelState.IsValid) 
+            {
+                return View(producer);
+            }
+
+            _service.Add(producer); // Kayıt eklemeyi servis üzerinden gönderiliyor
+
+            return RedirectToAction(nameof(Index));
+
+
+
+
+
+            return View();
+
+        }
+
     }
 }
