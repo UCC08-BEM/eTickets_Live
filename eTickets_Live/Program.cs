@@ -17,8 +17,9 @@ internal class Program
         builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
 
         // Services Configuration
-        builder.Services.AddScoped<IActorsService, ActorsService>();
-        builder.Services.AddScoped<IProducersService, ProducersService>();
+        builder.Services.AddScoped<IActorsService, ActorsService>(); // Actors servisinin registire edilmesi
+        builder.Services.AddScoped<IProducersService, ProducersService>(); // Producers servisinin register edilmesi
+        builder.Services.AddScoped<ICinemasService, CinemasService>(); // Cinemas servisinin register edilmesi
 
 
         var app = builder.Build();

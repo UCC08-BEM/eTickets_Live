@@ -13,7 +13,7 @@ namespace eTickets_Live.Models
         public string Description { get; set; } // Detaylı bilgi.
 
         // Relation tanımı (Movie ile)
-        public List<Movie> Movies { get; set; } // Movie classından bir liste değeri Id (Movie) bilgisinin geleceği kısım. Bir cinemada birden fazla film olabilir.
+        public List<Movie>? Movies { get; set; } // Movie classından bir liste değeri Id (Movie) bilgisinin geleceği kısım. Bir cinemada birden fazla film olabilir.
 
     }
 }

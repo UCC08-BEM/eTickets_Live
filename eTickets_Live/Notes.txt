@@ -60,16 +60,22 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 	14.1 Actors
 
 	14.2 Producers 
-		Actor tarafı için yapılmış olan service kısımları Producer lar için de uygulanabilir.
+		Actor tarafı için yapılmış olan service kısımları Producer için de uygulanabilir.
 
-		. IProcudersService isminde bir Interface tanımlayarak ProducersService classını oluşturalım . Producer model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
+		. IProducersService isminde bir Interface tanımlayarak ProducersService classını oluşturalım . Producer model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
 
 		. Interfaceleri tanımladıktan sonra ProducerService isminde hizmet edecek classımızı yaratalım.
 
 		. Tanımlamış olduğumuz servisi kullanabilmek için Program.cs classında register edilmesi gerekiyor.
 
+	14.3 Cinemas
+		Actor tarafı için yapılmış olan service kısımları Cinema için de uygulanabilir.
+		
+		. ICinemasService isminde bir Interface tanımlayarak CinemasService classını oluşturalım . Cinema model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
 
+		. Interfaceleri tanımladıktan sonra ProducerService isminde hizmet edecek classımızı yaratalım.
 
+		. Tanımlamış olduğumuz servisi kullanabilmek için Program.cs classında register edilmesi gerekiyor.
 
 
 
