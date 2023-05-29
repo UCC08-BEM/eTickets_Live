@@ -1,4 +1,5 @@
 ﻿using eTickets_Live.Data;
+using eTickets_Live.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets_Live.Controllers
@@ -8,19 +9,26 @@ namespace eTickets_Live.Controllers
         // Bu controller ile öncelikle db tarafındaki verleri görüntüleyelim.
         // dbcontext tanımlarını yapmam gerekiyor.
 
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
+        private readonly IProducersService _service;
 
-        public ProducersController(AppDbContext context)
+        public ProducersController(IProducersService service)
         {
-            _context = context;
+            _service = service;
 
         }
 
         public IActionResult Index()
         {
-            var producersdata = _context.Producers.ToList();
+            var producersdata = _service.GetAll();
 
             return View(producersdata);
+
+        }
+
+        public IActionResult Create()
+        {
+            return View();
 
         }
     }
