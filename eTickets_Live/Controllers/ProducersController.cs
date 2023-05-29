@@ -46,12 +46,6 @@ namespace eTickets_Live.Controllers
 
             return RedirectToAction(nameof(Index));
 
-
-
-
-
-            return View();
-
         }
 
     }
