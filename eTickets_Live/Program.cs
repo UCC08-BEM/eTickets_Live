@@ -20,6 +20,7 @@ internal class Program
         builder.Services.AddScoped<IActorsService, ActorsService>(); // Actors servisinin registire edilmesi
         builder.Services.AddScoped<IProducersService, ProducersService>(); // Producers servisinin register edilmesi
         builder.Services.AddScoped<ICinemasService, CinemasService>(); // Cinemas servisinin register edilmesi
+        builder.Services.AddScoped<IMoviesService, MoviesService>(); // Movies servisinin register edilmesi
 
 
         var app = builder.Build();
