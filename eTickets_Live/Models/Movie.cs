@@ -15,7 +15,7 @@ namespace eTickets_Live.Models
 
         public double Price { get; set; }
 
-        public string ImageURL { get; set; } // Filmin afişi - int sitesinden gelecek şekilde varsayım
+        public string ImageURL { get; set; } // Filmin poster - int sitesinden gelecek şekilde varsayım
 
         public DateTime StartDate { get; set; } // Vizyona giriş tarihi
 

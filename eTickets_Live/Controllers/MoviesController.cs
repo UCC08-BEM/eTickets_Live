@@ -30,9 +30,14 @@ namespace eTickets_Live.Controllers
 
             var allmovies = _service.GetAll(c => c.Cinema);
 
-
-
             return View(allmovies);
+        }
+
+
+        public IActionResult Details(int id)
+        {
+            var movieDetail= _service.Get
+            return View();
         }
     }
 }
