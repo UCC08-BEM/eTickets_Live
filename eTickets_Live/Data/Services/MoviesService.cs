@@ -1,5 +1,6 @@
 ﻿using eTickets_Live.Data.Base;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Data.ViewModels;
 using eTickets_Live.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,18 @@ namespace eTickets_Live.Data.Services
                 .FirstOrDefault(n=> n.Id == id);
 
             return movieDetails;
+        }
+
+        public NewMovieDropdownsVM GetNewMovieDropdownsValues()
+        {
+            var response = new NewMovieDropdownsVM()
+            {
+                Actors = _context.Actors.OrderBy(a => a.FullName).ToList(),
+                Cinemas = _context.Cinemas.OrderBy(c => c.Name).ToList(),
+                Producers = _context.Producers.OrderBy(p => p.FullName).ToList()
+            };
+
+            return response;
         }
     }
 }

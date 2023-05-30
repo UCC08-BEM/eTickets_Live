@@ -81,6 +81,13 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 
 		. IMoviesService isminde bir Interface tanımlayarak MoviesService classını(servisini) oluşturalım . Movie model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
 
+		. Interfaceleri tanımladıktan sonra MovieService isminde hizmet edecek classımızı yaratalım.
+
+		. Tanımlamış olduğumuz servisi kullanabilmek için Program.cs classında register edilmesi gerekiyor.
+
+		. Create : Movie Create işlemi diğer Create işlemlerinden farklı. Burada ilişkili olan diğer tablolarda gelecek olan ve Dropdown olarak seçilecek bilgiler bulunmakta. Bu yüzden Servisimizde ve Service Interface üzerinde bazı değişiklikler yapmak gerekecek. 
+
+		. 
 
 
 

@@ -38,7 +38,23 @@ namespace eTickets_Live.Controllers
         {
             var movieDetail= _service.GetMovieById(id);
 
-            return View(movieDetail);
+            return View(movieDetail); // Seçilen filmin detayını getirme
+
+        }
+
+        public IActionResult Create()
+        {
+            // Öncelikle Create Viewında kullanılacak olan dropdown ların içeriklerini öğreneyi/oluşturayım
+            var movieDropdownsData = _service.GetNewMovieDropdownsValues();
+
+            // Bu olşan dropdown değerlerini ViewBag yöntemiyle Create View'da kullanılacak şekilde belirleyelim.
+            ViewBag.Cinemas= new SelectList(movieDropdownsData.Cinemas,"Id","Name");
+            ViewBag.Producers= new SelectList(movieDropdownsData.Producers,"Id","FullName");
+            ViewBag.Actors= new SelectList(movieDropdownsData.Actors,"Id","FullName");
+
+
+            return View(); // Seçilen filmin detayını getirme
+
         }
     }
 }
