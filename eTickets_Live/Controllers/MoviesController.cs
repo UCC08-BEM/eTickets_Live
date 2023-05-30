@@ -36,8 +36,9 @@ namespace eTickets_Live.Controllers
 
         public IActionResult Details(int id)
         {
-            var movieDetail= _service.Get
-            return View();
+            var movieDetail= _service.GetMovieById(id);
+
+            return View(movieDetail);
         }
     }
 }
