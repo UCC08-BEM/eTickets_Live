@@ -37,9 +37,10 @@ namespace eTickets_Live.Data.Base
             _context.SaveChanges(); // sildi.
         }
 
-        public IEnumerable<T> GetAll() => _context.Set<T>().ToList(); // ilgili modelin Tüm kayıtları getirir.
+        public IEnumerable<T> GetAll() => _context.Set<T>().ToList(); // ilgili modelin(movie modeli hariç diğer tüm modeller için uygun) Tüm kayıtları getirir.
         
 
+        // movie modeli için uygun.
         public IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>();
@@ -49,7 +50,10 @@ namespace eTickets_Live.Data.Base
             return query.ToList();
         }
 
-        public T GetById(int id) => _context.Set<T>().FirstOrDefault(x => x.Id == id); // İlgili seçilen kayıdı getirir.
+        public T GetById(int id)
+        {
+            return _context.Set<T>().FirstOrDefault(x => x.Id == id); // İlgili seçilen kayıdı getirir.
+        }
 
         public void Update(int id, T entity) // ilgili modeldeki ilgili kayıdı günceller
         {
