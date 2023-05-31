@@ -155,7 +155,9 @@ namespace eTickets_Live.Controllers
             {
                 // eğer boş değilse view ekranında bir arama kelimesi yazılmıştır.
 
-                var filteredResult = allMovies.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                //var filteredResult = allMovies.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Description,searchString,StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+                var filteredResult=allMovies.Where(n=> n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
 
                 return View("Index",filteredResult);
             }
