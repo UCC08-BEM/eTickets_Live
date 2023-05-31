@@ -87,7 +87,8 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 
 		. Create : Movie Create işlemi diğer Create işlemlerinden farklı. Burada ilişkili olan diğer tablolarda gelecek olan ve Dropdown olarak seçilecek bilgiler bulunmakta. Bu yüzden Servisimizde ve Service Interface üzerinde bazı değişiklikler yapmak gerekecek. 
 
-		. 
+		. Yeni bir film verisi ekleme
+		Öncelikle böyle bir aksiyon için IMovieService Interfaceine bu işlem için gerekli olacak metot tanımını yapalım
 
 
 

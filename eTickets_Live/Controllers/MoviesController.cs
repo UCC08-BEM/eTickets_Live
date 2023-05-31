@@ -1,5 +1,6 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Data.ViewModels;
 using eTickets_Live.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -54,6 +55,30 @@ namespace eTickets_Live.Controllers
 
 
             return View(); // Seçilen filmin detayını getirme
+
+        }
+
+        [HttpPost]
+        public IActionResult Create(NewMovieVM movie)
+        {
+            if (!ModelState.IsValid)
+            {
+            // Öncelikle Create Viewında kullanılacak olan dropdown ların içeriklerini öğreneyi/oluşturayım
+            var movieDropdownsData = _service.GetNewMovieDropdownsValues();
+
+            // Bu olşan dropdown değerlerini ViewBag yöntemiyle Create View'da kullanılacak şekilde belirleyelim.
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+
+            return View(movie); // Seçilen filmin detayını getirme
+
+            }
+
+            _service.AddNewMovie(movie);
+
+            return RedirectToAction(nameof(Index));
 
         }
     }

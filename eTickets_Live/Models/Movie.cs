@@ -13,7 +13,7 @@ namespace eTickets_Live.Models
 
         public string Description { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
         public string ImageURL { get; set; } // Filmin poster - int sitesinden gelecek şekilde varsayım
 
@@ -40,5 +40,7 @@ namespace eTickets_Live.Models
         public int ProducerId { get; set; }
         [ForeignKey("ProducerId")]
         public Producer Producer { get; set; }
+
+
     }
 }

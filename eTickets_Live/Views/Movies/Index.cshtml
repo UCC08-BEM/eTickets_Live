@@ -62,7 +62,7 @@
                                    asp-controller="Orders"
                                    asp-action="AddItemToShoopinCart"
                                    asp-route-id="@item.Id">
-                                    <i class="bi bi-cart-plus"></i>Sepete Ekle (Fiyat @item.Price.ToString("c"))
+                                    <i class="bi bi-cart-plus"></i>Sepete Ekle (Fiyat @item.Price.ToString())
                                </a>  @*if-else yapısı*@
                                <a class="btn btn-outline-primary float-end" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i>Detaylar
@@ -80,3 +80,5 @@
 
     }
 </div>
+
+@Html.Partial("_CreateItem","Movies")                              

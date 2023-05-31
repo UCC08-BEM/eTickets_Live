@@ -18,7 +18,7 @@ namespace eTickets_Live.Data.ViewModels
 
         [Display(Name = "Fiyat")]
         [Required(ErrorMessage = "Fiyat bilgisi gereklidir...")]
-        public string Price { get; set; }
+        public double Price { get; set; }
 
         [Display(Name = "Film Posteri")]
         [Required(ErrorMessage = "Film poster bilgisi gereklidir...")]
@@ -26,11 +26,11 @@ namespace eTickets_Live.Data.ViewModels
 
         [Display(Name = "Film Vizyon Başlangıç Tarihi")]
         [Required(ErrorMessage = "Film vizyon başlangıç tarih bilgisi gereklidir...")]
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Display(Name = "Film Vizyon Bitiş Tarihi")]
         [Required(ErrorMessage = "Film vizyon bitiş tarih bilgisi gereklidir...")]
-        public string EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Display(Name = "Film Kategorisi")]
         [Required(ErrorMessage = "Film kategori bilgisi gereklidir...")]

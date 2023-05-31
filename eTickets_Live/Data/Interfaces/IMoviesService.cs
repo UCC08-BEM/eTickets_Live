@@ -11,5 +11,9 @@ namespace eTickets_Live.Data.Interfaces
 
         // Create ekranında görüntülenek olan dropdown seçimleri için ayrı bir model üzerinden yapılması gerekiyor.
         NewMovieDropdownsVM GetNewMovieDropdownsValues();
+
+        // Movies Add işlemi için gerekli olacak metot
+
+        Movie AddNewMovie(NewMovieVM data);
     }
 }
