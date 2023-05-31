@@ -90,6 +90,11 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 		. Yeni bir film verisi ekleme
 		Öncelikle böyle bir aksiyon için IMovieService Interfaceine bu işlem için gerekli olacak metot tanımını yapalım
 
+		. Varolan film verisini güncelleme
+			Index.cshtml dosyasındaki gerekli düzenlemeyi yapalım...
+
+
+
 
 
 

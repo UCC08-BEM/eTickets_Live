@@ -81,5 +81,69 @@ namespace eTickets_Live.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
+        public IActionResult Edit(int id)
+        {
+            var movieDetails = _service.GetMovieById(id);
+
+            if (movieDetails == null)
+            {
+                return View("NotFound");
+            }
+
+            var response = new NewMovieVM()
+            {
+                Id = movieDetails.Id,
+                Name = movieDetails.Name,
+                Description = movieDetails.Description,
+                Price = movieDetails.Price,
+                StartDate = movieDetails.StartDate,
+                EndDate = movieDetails.EndDate,
+                ImageURL = movieDetails.ImageURL,
+                MovieCategory = movieDetails.MovieCategory,
+                CinemaId = movieDetails.CinemaId,
+                ProducerId = movieDetails.ProducerId,
+                ActorIds = movieDetails.Actor_Movies.Select(n => n.ActorId).ToList()
+            };
+
+
+            // Öncelikle Create Viewında kullanılacak olan dropdown ların içeriklerini öğreneyi/oluşturayım
+            var movieDropdownsData = _service.GetNewMovieDropdownsValues();
+
+            // Bu olşan dropdown değerlerini ViewBag yöntemiyle Create View'da kullanılacak şekilde belirleyelim.
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+
+            return View(response); // Seçilen filmin detayını getirme
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id,NewMovieVM movie)
+        {
+            if (id != movie.Id) return View("NotFound");
+
+            if (!ModelState.IsValid)
+            {
+                // Öncelikle Create Viewında kullanılacak olan dropdown ların içeriklerini öğreneyi/oluşturayım
+                var movieDropdownsData = _service.GetNewMovieDropdownsValues();
+
+                // Bu olşan dropdown değerlerini ViewBag yöntemiyle Create View'da kullanılacak şekilde belirleyelim.
+                ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+                ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+
+                return View(movie); // Seçilen filmin detayını getirme
+
+            }
+
+            _service.UpdateMovie(movie);
+
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }

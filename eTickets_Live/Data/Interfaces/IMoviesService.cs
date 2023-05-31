@@ -15,5 +15,9 @@ namespace eTickets_Live.Data.Interfaces
         // Movies Add işlemi için gerekli olacak metot
 
         Movie AddNewMovie(NewMovieVM data);
+
+        // Movies Update işlemi için gerekli olacak
+
+        Movie UpdateMovie(NewMovieVM data);
     }
 }

@@ -18,7 +18,7 @@ namespace eTickets_Live.Data.ViewModels
 
         [Display(Name = "Fiyat")]
         [Required(ErrorMessage = "Fiyat bilgisi gereklidir...")]
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
         [Display(Name = "Film Posteri")]
         [Required(ErrorMessage = "Film poster bilgisi gereklidir...")]

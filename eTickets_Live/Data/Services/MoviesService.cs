@@ -53,6 +53,55 @@ namespace eTickets_Live.Data.Services
             
         }
 
+        public Movie UpdateMovie(NewMovieVM data)
+        {
+            var dbMovie= _context.Movies.FirstOrDefault(n=> n.Id == data.Id);
+
+            // aşağıdaki kısımda ana movie verisi güncelleniyor.
+            if (dbMovie !=null)
+            {
+                dbMovie.Name = data.Name;
+                dbMovie.Description = data.Description;
+                dbMovie.Price = data.Price;
+                dbMovie.ImageURL= data.ImageURL;
+                dbMovie.CinemaId= data.CinemaId;
+                dbMovie.StartDate = data.StartDate;
+                dbMovie.EndDate = data.EndDate;
+                dbMovie.MovieCategory = data.MovieCategory;
+                dbMovie.ProducerId = data.ProducerId;
+
+                _context.SaveChanges();
+            }
+
+            // ActorMovies kısmı
+            // datadan gelen actor bilgilerivar. Genelde bu tür durumlar için kullanılan yöntem. İlgili kaydın önceki tüm verilerinin silinip, yeni gelen (update edilmiş) verilerin tekrardan yazılması.
+
+            // Vaarolan Actor bilgilerinin ActorMoviesden kaldırılması
+            var existingActorsDb = _context.Actors_Movies.Where(n=> n.MovieId == data.Id).ToList();
+
+            _context.Actors_Movies.RemoveRange(existingActorsDb); // ilgili actor kayıtlarını kaldırıyor(ActorMovies)
+
+            _context.SaveChanges();
+
+            // Yeni actor bilgileri ekleme
+
+            foreach (var actorId in data.ActorIds)
+            {
+                var newActorMovie = new Actor_Movie()
+                {
+                    MovieId = data.Id,
+                    ActorId = actorId
+
+                };
+
+                _context.Actors_Movies.Add(newActorMovie);
+            }
+
+            _context.SaveChanges();
+
+            return dbMovie;
+        }
+
         public Movie GetMovieById(int id)
         {
             // aşağıdaki gösterim modeller arasındaki ilişkilerden yararlanarak  istenen film bilgisi db den çeker
@@ -78,5 +127,7 @@ namespace eTickets_Live.Data.Services
 
             return response;
         }
+
+
     }
 }
