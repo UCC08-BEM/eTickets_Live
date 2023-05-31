@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace eTickets_Live.Controllers
 {
     public class MoviesController : Controller
@@ -144,6 +143,24 @@ namespace eTickets_Live.Controllers
 
             return RedirectToAction(nameof(Index));
 
+        }
+
+        public IActionResult Filter(string searchString)
+        {
+            // Filmin ismine göre bir arama
+
+            var allMovies = _service.GetAll(n => n.Cinema);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                // eğer boş değilse view ekranında bir arama kelimesi yazılmıştır.
+
+                var filteredResult = allMovies.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+                return View("Index",filteredResult);
+            }
+
+            return View("Index", allMovies);
         }
     }
 }
