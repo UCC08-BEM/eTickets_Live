@@ -13,6 +13,7 @@ namespace eTickets_Live.Controllers
         // Bu controller ile öncelikle db tarafındaki verleri görüntüleyelim.
         // dbcontext tanımlarını yapmam gerekiyor.
 
+        //DI
         private readonly IMoviesService _service;
 
         public MoviesController(IMoviesService service)
