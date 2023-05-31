@@ -120,7 +120,7 @@ namespace eTickets_Live.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost] 
         public IActionResult Edit(int id,NewMovieVM movie)
         {
             if (id != movie.Id) return View("NotFound");
