@@ -1,9 +1,10 @@
 ﻿using eTickets_Live.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets_Live.Data
 {
-    public class AppDbContext : DbContext 
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         // Constructor metodu
 

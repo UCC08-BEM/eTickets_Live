@@ -94,6 +94,18 @@ Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme i
 			Index.cshtml dosyasındaki gerekli düzenlemeyi yapalım...
 
 
+=================
+ASP.Net Core Authentication & Authorization (Kimlik doğrulama ve yetkilendirme)
+
+Karşımıza bazı kavramlar : IdentityFramework,Users,UserManager,Roles,Role Manager ....
+
+1. Projeye Identity ile ilgili bazı tabloların eklenmesi
+
+Model klasörüne ApplicationUser.cs class eklenmesi.
+
+Db üzerinde migration işlemi yapıldıktan sonra bazı dummy verilerin eklenmesi...
+
+
 
 
 

@@ -1,5 +1,7 @@
 ﻿using eTickets_Live.Data.Enums;
+using eTickets_Live.Data.Static;
 using eTickets_Live.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace eTickets_Live.Data
 {
@@ -7,7 +9,7 @@ namespace eTickets_Live.Data
 
     public class AppDBInitializer
     {
-        // Dummy veriyi yaratan metod
+        // Dummy veriyi yaratan metod (normal tablolar için)
         public static void Seed(IApplicationBuilder applicationBuilder) 
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope()) // Kapsamı belirtiyorum
@@ -314,6 +316,68 @@ namespace eTickets_Live.Data
 
             }
         
+        }
+
+        // Identity tabloları için dummy verilerin yaratılması
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            // UserManager ve RoleManager servislerini kullanabilmek için bir servis kapsamı yaratıyorum
+
+            using(var serviceScope= applicationBuilder.ApplicationServices.CreateScope())
+            {
+            // Öncelikle Roles ile ilgili kısım
+
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                // veritabanındaki identity ile ilgili tablolarda veri var mı/yok mu
+                // Role tanımları için örneğin Admin,User gibi. Bunun içinde UserRoles isminde bir static class tanımlıyorum.
+
+                if (roleManager == null)
+                {
+                    // Admin kullanıcı kaydı var mı/ yok mu
+                    if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                        await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+
+                    // User kullanıcısı var mı / yok mu
+                    if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                        await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                }
+
+                // Users ile ilgili kısım
+                var userManager= serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+                // Admin haklarına sahip bir user yaratalım
+
+                string adminUserEMail = "admin@etickets.com";
+
+                var adminUser= await userManager.FindByEmailAsync(adminUserEMail);
+
+                if (adminUser == null)
+                {
+                    // böyle bir kullanıcı yoksa
+
+                    var newAdminUser = new ApplicationUser()
+                    {
+                        FullName = "Admin User",
+                        UserName = "admin",
+                        Email = adminUserEMail,
+                        EmailConfirmed = true
+                    };
+
+                    await userManager.CreateAsync(newAdminUser);
+
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+
+
+                }
+
+
+            }
+
+
+
+            
+
         }
     }
 }
