@@ -364,20 +364,36 @@ namespace eTickets_Live.Data
                         EmailConfirmed = true
                     };
 
-                    await userManager.CreateAsync(newAdminUser);
+                    await userManager.CreateAsync(newAdminUser,"a1234");
 
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
 
 
                 }
 
+                // Standart bir user için
 
+                string appUserEMail = "user@etickets.com";
+
+                var appUser = await userManager.FindByEmailAsync(appUserEMail);
+
+                if (appUser == null)
+                {
+                    // böyle bir kullanıcı yoksa
+
+                    var newAppUser = new ApplicationUser()
+                    {
+                        FullName = "Application User",
+                        UserName = "user",
+                        Email = appUserEMail,
+                        EmailConfirmed = true
+                    };
+
+                    await userManager.CreateAsync(newAppUser,"u1234");
+
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                }
             }
-
-
-
-            
-
         }
     }
 }

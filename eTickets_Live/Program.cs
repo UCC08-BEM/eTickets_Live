@@ -1,6 +1,9 @@
 using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
 using eTickets_Live.Data.Services;
+using eTickets_Live.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
@@ -22,6 +25,15 @@ internal class Program
         builder.Services.AddScoped<ICinemasService, CinemasService>(); // Cinemas servisinin register edilmesi
         builder.Services.AddScoped<IMoviesService, MoviesService>(); // Movies servisinin register edilmesi
 
+        // Authentication ve Authorization serviceleri
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+
+        builder.Services.AddMemoryCache();
+        builder.Services.AddSession();
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        });
 
         var app = builder.Build();
 
@@ -32,8 +44,6 @@ internal class Program
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
-
-
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
@@ -48,6 +58,8 @@ internal class Program
 
         // Program çalýþmadan önce hazýrlanmýþ olan test datasýnýn VT ye gönderilmesi
         AppDBInitializer.Seed(app);
+        // User bilgilerinin db ye gönderilmesi
+        AppDBInitializer.SeedUsersAndRolesAsync(app).Wait();
 
         app.Run();
     }
