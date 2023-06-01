@@ -12,7 +12,7 @@ using eTickets_Live.Data;
 namespace eTickets_Live.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230601071050_Identity_Added")]
+    [Migration("20230601103359_Identity_Added")]
     partial class Identity_Added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

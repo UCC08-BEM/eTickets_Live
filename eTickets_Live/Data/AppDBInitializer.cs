@@ -325,23 +325,21 @@ namespace eTickets_Live.Data
 
             using(var serviceScope= applicationBuilder.ApplicationServices.CreateScope())
             {
-            // Öncelikle Roles ile ilgili kısım
+                // Roles ile ilgili kısım
 
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
                 // veritabanındaki identity ile ilgili tablolarda veri var mı/yok mu
                 // Role tanımları için örneğin Admin,User gibi. Bunun içinde UserRoles isminde bir static class tanımlıyorum.
 
-                if (roleManager == null)
-                {
-                    // Admin kullanıcı kaydı var mı/ yok mu
+                // Admin rolü tanımlı mı
                     if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                         await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
 
-                    // User kullanıcısı var mı / yok mu
+                // User rolü tanımlı mı
                     if (!await roleManager.RoleExistsAsync(UserRoles.User))
                         await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-                }
+                    // -----------------
 
                 // Users ile ilgili kısım
                 var userManager= serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
