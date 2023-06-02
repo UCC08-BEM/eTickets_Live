@@ -59,5 +59,13 @@ namespace eTickets_Live.Controllers
 
         } 
 
+        // Register bölümü
+
+        public IActionResult Register()
+        {
+
+
+            return View();
+        }
     }
 }
