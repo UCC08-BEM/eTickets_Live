@@ -21,6 +21,7 @@ namespace eTickets_Live.Controllers
 
         public IActionResult Login()
         {
+            // Kullanılan şifre Coding@1234? (admin/user)
             var response = new LoginVM();
 
             return View();
