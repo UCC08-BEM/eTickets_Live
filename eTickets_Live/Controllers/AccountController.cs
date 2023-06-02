@@ -105,5 +105,16 @@ namespace eTickets_Live.Controllers
 
         }
 
+        // Logout Bölümü (göndericek olan yer Logout Butonu)
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+
+
     }
 }
