@@ -47,6 +47,7 @@ namespace eTickets_Live.Controllers
                     if (result.Succeeded) // işlem başarılı ise
                     {
                         return RedirectToAction("Index", "Movies");
+
                     }
                 }
 
