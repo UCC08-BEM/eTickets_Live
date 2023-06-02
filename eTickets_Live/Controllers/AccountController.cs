@@ -1,4 +1,5 @@
 ﻿using eTickets_Live.Data;
+using eTickets_Live.Data.Static;
 using eTickets_Live.Data.ViewModels;
 using eTickets_Live.Models;
 using Microsoft.AspNetCore.Identity;
@@ -68,5 +69,41 @@ namespace eTickets_Live.Controllers
 
             return View(response);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM registerVM)
+        {
+            if (!ModelState.IsValid) return View(registerVM);
+
+            var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
+
+            if (user != null)  // herhangi bir kayıt varsa
+            {
+                TempData["Error"] = "Bu isimde bir kayıt bulunmaktadır... Lütfen değiştiriniz";
+                return View(registerVM);
+            }
+
+            // eğer yoksa yaratılacak bir kullanıcı
+            var newUser = new ApplicationUser()
+            {
+                FullName = registerVM.FullName,
+                Email = registerVM.EmailAddress,
+                UserName = registerVM.EmailAddress
+            };
+
+            // Yaratılacak kullanıcı için görevi IdentityFramework ün metoduna bırakıyoruz
+            var newUserResponse= await _userManager.CreateAsync(newUser,registerVM.Password);
+
+            if (newUserResponse.Succeeded) // Yaptığı işlem başarılı ise
+            {
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                
+                return View("RegisterCompleted");
+            }
+
+            return View(registerVM);
+
+        }
+
     }
 }
