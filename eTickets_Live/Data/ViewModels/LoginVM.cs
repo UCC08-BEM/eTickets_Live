@@ -10,6 +10,7 @@ namespace eTickets_Live.Data.ViewModels
         
         [Display(Name ="Şifre :")]
         [Required(ErrorMessage ="Şifrenizi girmeniz gerekmektedir..")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }
