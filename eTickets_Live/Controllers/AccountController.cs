@@ -1,4 +1,5 @@
 ﻿using eTickets_Live.Data;
+using eTickets_Live.Data.ViewModels;
 using eTickets_Live.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,8 @@ namespace eTickets_Live.Controllers
 
         public IActionResult Login()
         {
+            var response = new LoginVM();
+
             return View();
         }
     }
