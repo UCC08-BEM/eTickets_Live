@@ -63,9 +63,9 @@ namespace eTickets_Live.Controllers
 
         public IActionResult Register()
         {
+            var response=new RegisterVM();
 
-
-            return View();
+            return View(response);
         }
     }
 }
