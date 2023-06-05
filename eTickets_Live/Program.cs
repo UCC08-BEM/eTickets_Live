@@ -50,8 +50,8 @@ internal class Program
 
         app.UseRouting();
 
-        app.UseAuthentication(); // sayfalarýn kullanýcý duruma göre yetkilendirilmesi
-        app.UseAuthorization();
+        app.UseAuthentication(); // sayfalarýn kullanýcý duruma göre kimlik doðrulamasý
+        app.UseAuthorization(); // sayfalarýn kullanýcý duruma göre yetkilendirilmesi
 
         app.MapControllerRoute(
             name: "default",
