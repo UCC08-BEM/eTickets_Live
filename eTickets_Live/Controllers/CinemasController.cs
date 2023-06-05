@@ -1,10 +1,14 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Data.Static;
 using eTickets_Live.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace eTickets_Live.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class CinemasController : Controller
     {
         // Bu controller ile öncelikle db tarafındaki verleri görüntüleyelim.
@@ -18,6 +22,7 @@ namespace eTickets_Live.Controllers
 
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             //var cinemasdata = _context.Cinemas.ToList();
@@ -43,6 +48,7 @@ namespace eTickets_Live.Controllers
         }
 
         // Cinemas/Details/4
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             var cinemaDetails=_service.GetById(id);

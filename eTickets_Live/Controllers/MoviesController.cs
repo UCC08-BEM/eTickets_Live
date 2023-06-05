@@ -1,13 +1,18 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Data.Static;
 using eTickets_Live.Data.ViewModels;
 using eTickets_Live.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets_Live.Controllers
 {
+    // Identity özelliklerini kullanabilmek için (admin girdiğinde ona göre,user girdiğin user yetkilendirmesine göre controllerın durum değiştirmesi yapması gerekiyor. Bu yüzden Authorize attribute belirtilmesi gerekiyor.
+
+    [Authorize(Roles =UserRoles.Admin)] // tüm metotları adminin erişeği şekilde belirliyor.
     public class MoviesController : Controller
     {
         // Bu controller ile öncelikle db tarafındaki verleri görüntüleyelim.
@@ -22,19 +27,22 @@ namespace eTickets_Live.Controllers
 
         }
 
+        [AllowAnonymous] // admin..user farketmeksizin görülebilmesi
         public IActionResult Index()
         {
             // Movie tablosu Cinema tablosu ile ilişkili olduğundan dolayı Include direktifi ile ilişkili olduğu tablodan gerekli alanı alabiliyoruz.(Burad Cinema adı gibi)
             //var allmovies = _context.Movies.Include(c => c.Cinema).OrderBy(c=> c.Name).ToList();
 
-            // Not: Normal bir şekilde service tarafındaki GetAll metodunu kullanamıyorum. Nedeni Movie modelinin birden fazla relation içermesi. Bunun için BaseRepository de ayrı bir GetAll metodu tanımlanması gerekiyor
+            // Not: Normal bir şekilde service tarafındaki GetAll metodunu kullanamıyorum. Nedeni Movie modelinin birden fazla relation içermesi. Bunun için BaseRepository de ayrı bir GetAll metodu tanımlanması gerekiyor..
+
+
 
             var allmovies = _service.GetAll(c => c.Cinema);
 
             return View(allmovies);
         }
 
-
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             var movieDetail= _service.GetMovieById(id);
@@ -146,6 +154,7 @@ namespace eTickets_Live.Controllers
 
         }
 
+        [AllowAnonymous]
         public IActionResult Filter(string searchString)
         {
             // Filmin ismine göre bir arama

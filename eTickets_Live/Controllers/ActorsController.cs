@@ -1,10 +1,14 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Data.Static;
 using eTickets_Live.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace eTickets_Live.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
         // Actor işlemleri için Interface tanımlandığından bunun atamasını tanımlamak gerekiyor.
@@ -23,6 +27,7 @@ namespace eTickets_Live.Controllers
             
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             //var actorsdata = _context.Actors.ToList();
@@ -51,6 +56,7 @@ namespace eTickets_Live.Controllers
         }
 
         // Get: Actors/Details/1
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
 

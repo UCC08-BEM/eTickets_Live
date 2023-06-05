@@ -1,11 +1,14 @@
 ﻿using eTickets_Live.Data;
 using eTickets_Live.Data.Interfaces;
+using eTickets_Live.Data.Static;
 using eTickets_Live.Models;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace eTickets_Live.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ProducersController : Controller
     {
         // Bu controller ile öncelikle db tarafındaki verleri görüntüleyelim.
@@ -20,6 +23,7 @@ namespace eTickets_Live.Controllers
 
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var producersdata = _service.GetAll();
@@ -48,6 +52,7 @@ namespace eTickets_Live.Controllers
         }
 
         // Get : Producers/Details/1
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             var producerDetails=_service.GetById(id);
