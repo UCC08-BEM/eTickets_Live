@@ -60,6 +60,7 @@ internal class Program
         // Program çalýþmadan önce hazýrlanmýþ olan test datasýnýn VT ye gönderilmesi
         AppDBInitializer.Seed(app);
         // User bilgilerinin db ye gönderilmesi
+        
         AppDBInitializer.SeedUsersAndRolesAsync(app).Wait();
 
         app.Run();
