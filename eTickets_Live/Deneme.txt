@@ -1,0 +1,130 @@
+﻿Info:
+
+Ufak bir cinema-movie-actor-producer içeren , kayıt ekleme/silme/güncelleme işlemlerini içerek.
+
+
+1. Modellerin hazırlanması
+	Actor
+	Producer
+	Cinema
+	Movie bilgilerini basit olarak tutacak şekilde.
+	MovieCategory enum bloğu 
+
+2. Proje içinde DB olayı olduğundan gerekli nuget paketlerinin projeye dahil edilmesi
+	EF Core
+	EF Core Tools --> Nuget Package Manager kısmında Entity Framework komutlarının kullanılabilmesi.
+	EF Core SqlServer 
+
+3. Uygulama içine VT na bağlantı yapacak olan AppDbContext sınıfı ekleniyor (Bu sınıfın uygulama <-> VT arasında bir tercümanlık görevi olacaktır.)
+
+4. Yapılmış olan modellerimizin Migration ile VT tarafına gönderilmesi öncesi ilişkisellik tanımlarının yapılması
+	
+	Cinema - Movie  (Cinema classı ile Movie classının  ilşkilendirilmesi)
+	
+	Producer - Movie (Produces classı ile Movie classının ilişkilendirilmesi)
+	
+	Movie - Actor Movie - Actor --> Actor ve Movie modellerinde çok'a çok bir ilişki durumu olduğundan dolayı "ActorMovie" olarak bu ilişki seviyesini bire çok seviyesine düşürebiliriz. İşlerimiz daha kolaylaşır dolayısıyla.
+
+5. Yapıyı Db tarafına göndermeden önce benim class yapılarını AppDbContext sınıfına öğretmem lazım.
+
+6. appsettings.json dosyasına VT ye bağlanabilmesi için gerekli "ConnectionStrings" tanımlarının yapılması.
+
+7. Program.cs dosyasına/classına DB tanımlamalarını yapmış olduğumuz AppDbContext düzenlemelerinin yapılması(ki connection str öğrencem vb.)
+
+8. migration - update database
+
+9. Bu VT içine test verisi yerleştirebilmek için örnek data oluşturacak bir sınıf tanımlanması yapılır.(AppDbInitializer)
+
+10. Program.cs içine AppDbInitializer kısmının eklenmesi ve sample dataların oluşturulması
+
+=========================
+11. Controller ların oluşturulması
+
+- ActorsController
+
+- ProducersController
+
+- CinemasController
+
+- MoviesController
+
+12. Viewların oluşturulması
+	Actors,Produces,Cinemas,Movies
+
+
+13. Layout sayfasına menü seçenekleri ve search eklendi.
+
+14. Veriler ile çalışma
+	Varolan tablolara CRUD işlemleri gerçekleştirme.
+
+	14.1 Actors
+
+	14.2 Producers 
+		Actor tarafı için yapılmış olan service kısımları Producer için de uygulanabilir.
+
+		. IProducersService isminde bir Interface tanımlayarak ProducersService classını oluşturalım . Producer model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
+
+		. Interfaceleri tanımladıktan sonra ProducerService isminde hizmet edecek classımızı yaratalım.
+
+		. Tanımlamış olduğumuz servisi kullanabilmek için Program.cs classında register edilmesi gerekiyor.
+
+	14.3 Cinemas
+		Actor tarafı için yapılmış olan service kısımları Cinema için de uygulanabilir.
+		
+		. ICinemasService isminde bir Interface tanımlayarak CinemasService classını oluşturalım . Cinema model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
+
+		. Interfaceleri tanımladıktan sonra ProducerService isminde hizmet edecek classımızı yaratalım.
+
+		. Tanımlamış olduğumuz servisi kullanabilmek için Program.cs classında register edilmesi gerekiyor.
+
+	14.4 Movies
+
+		. IMoviesService isminde bir Interface tanımlayarak MoviesService classını(servisini) oluşturalım . Movie model yapısını da IEntityBase Interface'inden miras alacak şekilde belirleyelim.
+
+		. Interfaceleri tanımladıktan sonra MovieService isminde hizmet edecek classımızı yaratalım.
+
+		. Tanımlamış olduğumuz servisi kullanabilmek için Program.cs classında register edilmesi gerekiyor.
+
+		. Create : Movie Create işlemi diğer Create işlemlerinden farklı. Burada ilişkili olan diğer tablolarda gelecek olan ve Dropdown olarak seçilecek bilgiler bulunmakta. Bu yüzden Servisimizde ve Service Interface üzerinde bazı değişiklikler yapmak gerekecek. 
+
+		. Yeni bir film verisi ekleme
+		Öncelikle böyle bir aksiyon için IMovieService Interfaceine bu işlem için gerekli olacak metot tanımını yapalım
+
+		. Varolan film verisini güncelleme
+			Index.cshtml dosyasındaki gerekli düzenlemeyi yapalım...
+
+
+=================
+ASP.Net Core Authentication & Authorization (Kimlik doğrulama ve yetkilendirme)
+
+Karşımıza bazı kavramlar : IdentityFramework,Users,UserManager,Roles,Role Manager ....
+
+1. Projeye Identity ile ilgili bazı tabloların eklenmesi
+
+Model klasörüne ApplicationUser.cs class eklenmesi.
+
+Db üzerinde migration işlemi yapıldıktan sonra bazı dummy verilerin eklenmesi...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
